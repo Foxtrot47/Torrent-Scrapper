@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torrent Scrapper Web", "Torrent Scrapper Web\Torrent Scrapper Web.csproj", "{8541ABB5-75FC-44A4-A012-FF2B4E98F94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torrent Scaper", "Torrent Scaper\Torrent Scaper.csproj", "{EAB1CE66-10EE-43CF-B3C0-CD50AC4061CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TorrentScaperUtil", "Torrent Scaper\TorrentScaperUtil.csproj", "{EAB1CE66-10EE-43CF-B3C0-CD50AC4061CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,25 @@
 ﻿@page
-@model IndexModel
+@model Torrent_Scrapper_Web.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    Torrent Search
+    <form method="post">
+        <label>Enter keywords</label>
+        <input type="text" name="query" required />
+        <button type="submit">Search</button>
+        <div>
+            @{
+                if(Model.TorrentData != null)
+                {
+                    foreach(TorrentScaperUtil.ScrapeData torrent in Model.TorrentData)
+                    {
+                        @torrent.Title;
+                    }
+                }
+            }
+        </div>
+    </form>
 </div>
