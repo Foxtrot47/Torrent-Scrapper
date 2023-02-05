@@ -56,165 +56,169 @@
         </button>
     </div>
 </div>
-<div
-    class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4 mt-8 px-2 md:px-6 h-full">
-    @{
-        if (Model.TorrentData != null)
+@if (Model.TorrentData != null && Model.PageCount > 0)
+{
+    <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4 mt-8 px-2 md:px-6 h-full">
+        @foreach (var torrent in Model.TorrentData)
         {
-            foreach (var torrent in Model.TorrentData)
-            {
-                if (torrent == null)
-                    continue;
-                <div
-                    class="bg-white dark:bg-gray-800 dark:text-gray-200 p-4 drop-shadow rounded flex flex-col justify-between">
-                    <div class="flex flex-row gap-x-2 justify-center h-full">
-                        <div class="w-full">
-                            @if (torrent.ImageUrl != null)
-                            {
-                                <img src="@torrent.ImageUrl" class="w-56" alt="@torrent.Title"/>
-                            }
-                            else
-                            {
+            if (torrent == null)
+                continue;
+            <div
+                class="bg-white dark:bg-gray-800 dark:text-gray-200 p-4 drop-shadow rounded flex flex-col justify-between">
+                <div class="flex flex-row gap-x-2 justify-center h-full">
+                    <div class="w-full">
+                        @if (torrent.ImageUrl != null)
+                        {
+                            <img src="@torrent.ImageUrl" class="w-56" alt="@torrent.Title"/>
+                        }
+                        else
+                        {
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="{1.5}"
+                                stroke="currentColor"
+                                className="w-56">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                            </svg>
+                        }
+                    </div>
+                    <div class="space-y-1 flex flex-col justify-end gap-y-2 h-full">
+                        <div class="h-full">
+                            <div class="text-md md:text-lg lg:text-xl max-w-lg font-semibold break-all dark:text-white self-start">
+                                @torrent.Title
+                            </div>
+                        </div>
+                        <div class="flex flex-rows gap-x-4 text-sm">
+                            <div class="whitespace-nowrap flex gap-x-1">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
-                                    strokeWidth="{1.5}"
+                                    stroke-width="1.5"
                                     stroke="currentColor"
-                                    className="w-56">
+                                    class="w-6 h-6">
                                     <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                                 </svg>
-                            }
-                        </div>
-                        <div class="space-y-1 flex flex-col justify-end gap-y-2 h-full">
-                            <div class="h-full">
-                                <div class="text-md md:text-lg lg:text-xl max-w-lg font-semibold break-all dark:text-white self-start">
-                                    @torrent.Title
-                                </div>
+                                @torrent.DateUploaded
                             </div>
-                            <div class="flex flex-rows gap-x-4 text-sm">
-                                <div class="whitespace-nowrap flex gap-x-1">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        class="w-6 h-6">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-                                    </svg>
-                                    @torrent.DateUploaded
-                                </div>
-                                <div class="flex gap-x-1">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        class="w-6 h-6">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
-                                    @torrent.Uploader
-                                </div>
-                                <div class="flex gap-x-1">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        class="w-6 h-6">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/>
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M6 6h.008v.008H6V6z"/>
-                                    </svg>
+                            <div class="flex gap-x-1">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                @torrent.Uploader
+                            </div>
+                            <div class="flex gap-x-1">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M6 6h.008v.008H6V6z"/>
+                                </svg>
 
-                                    @torrent.Category
-                                </div>
+                                @torrent.Category
                             </div>
-                            <div class="flex flex-col gap-y-4 py-2 justify-between">
-                                <div class="flex gap-x-2">
-                                    <div class="flex gap-x-2 items-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-5 h-5 text-green-600">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
-                                        </svg>
-                                        @torrent.SeedersCount
-                                    </div>
-                                    <div class="flex gap-x-2 items-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-5 h-6 text-amber-600">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
-                                        </svg>
-                                        @torrent.LeechersCount
-                                    </div>
-                                    <div class="flex gap-x-2 items-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-5 h-5 text-blue-500">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/>
-                                        </svg>
-                                        @torrent.TotalSize
-                                    </div>
+                        </div>
+                        <div class="flex flex-col gap-y-4 py-2 justify-between">
+                            <div class="flex gap-x-2">
+                                <div class="flex gap-x-2 items-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="w-5 h-5 text-green-600">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                    </svg>
+                                    @torrent.SeedersCount
+                                </div>
+                                <div class="flex gap-x-2 items-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="w-5 h-6 text-amber-600">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                                    </svg>
+                                    @torrent.LeechersCount
+                                </div>
+                                <div class="flex gap-x-2 items-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="w-5 h-5 text-blue-500">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/>
+                                    </svg>
+                                    @torrent.TotalSize
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-row gap-x-4 text-md justify-end">
-                        <a
-                            href="@torrent.MagnetLink"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 mt-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Magnet Link
-                        </a>
-                        <a
-                            href="@torrent.TorrentLink"
-                            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 mt-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
-                            Torrent Link
-                        </a>
                     </div>
                 </div>
-            }
+                <div class="flex flex-row gap-x-4 text-md justify-end">
+                    <a
+                        href="@torrent.MagnetLink"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 mt-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Magnet Link
+                    </a>
+                    <a
+                        href="@torrent.TorrentLink"
+                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 mt-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                        Torrent Link
+                    </a>
+                </div>
+            </div>
         }
-    }
-</div>
+        }
+        }
+    </div>
+}
+else if (Model.TorrentData != null && Model.PageCount == 0)
+{
+    <div class="text-center dark:text-white mt-4">No results found!</div>
+}
 @if (Model.TorrentData != null)
 {
     <nav aria-label="Page navigation" class="flex justify-center mt-auto">
@@ -225,10 +229,9 @@
                 <div>
                     <a href="/?query=@Model.SearchKeywords&pagenum=@pageNo"
                        class="px-3 py-2 ml-0 leading-tight  border border-gray-300 rounded-lg dark:border-gray-700
-                       @if (Model.CurrentPage == num) {
+                       @if (Model.CurrentPage == num) { 
                            @:text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:bg-gray-700 dark:text-white
-                       } 
-                       else {
+                       } else { 
                            @:text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white
                        }">
                         @pageNo
